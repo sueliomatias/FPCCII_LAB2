@@ -1,0 +1,39 @@
+---
+title: "Temperatura JP x CG"
+output:
+    html_document:
+    df_print: paged
+theme: sandstone
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+library(lubridate)
+library(ggbeeswarm)
+theme_set(theme_bw())
+```
+
+```{r read}
+climas = read_csv(here::here("data/clima_cg_jp-semanal.csv"), 
+                  col_types = "cTdddddd")
+
+glimpse(climas)
+```
+
+Calcular a temperatura da semana anterior em cada linha
+
+```{r read}
+climas = climas %>% 
+  mutate(temp_anterior = lag(temp_media, n = 1)) 
+```
+
+### Q1: Qual a cidade é mais quente? Isso muda se considerarmos apenas o período de janeiro e fevereiro (pico do verão)? 
+
+### Q2: Quais os meses mais quentes e mais frios? Como você descreveria a temperatura das festas juninas das cidades nos últimos anos?
+
+### Q3: Quanto chove por semana em JP e CG? Descreva a distribuição do volume de chuvas para as cidades?
+
+### Q4: Qual a relação entre a temperatura de uma semana e a temperatura da semana anterior (descreva para as duas cidades)?
+
+### Q5: Qual a relação entre temperatura e chuvas nas semanas em que choveu (descreva para as duas cidades)?
